@@ -6,4 +6,4 @@ from django.utils import timezone
 
 def listas_publicaciones(request):
     publicaciones = Publicar.objects.filter().order_by('fecha_publicacion')
-    return render(request, 'blog/listas_publicaciones.html', {'publicaciones': publicaciones})
+    return render(request, 'blog/index.html', {'publicaciones': publicaciones})
