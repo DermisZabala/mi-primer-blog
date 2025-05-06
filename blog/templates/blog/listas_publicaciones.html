@@ -10,16 +10,13 @@
         <h1><a href="/">Bienvenido al blog de Hamel</a></h1>
     </div>
 
-    <div>
-        <p>publicado: 05.05.2025, 12:14</p>
-        <h2><a href="">Mi segunda publicacion</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    </div>
-
-    <div>
-        <p>publicacod: 04.05.2014, 12:14</p>
-        <h2><a href="">Mi primera publicacion</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-    </div>
+    {% for publicacion in publicaciones %}
+        <div>
+            <h2>{{ publicacion.titulo }}</h2>
+            <p>{{ publicacion.texto|linebreaksbr }}</p> 
+            <p>Fecha publicacion: {{ publicacion.fecha_publicacion }}</p>
+            <p>Autor: {{ publicacion.autor }}</p>
+        </div>
+    {% endfor %}    
 </body>
 </html>
