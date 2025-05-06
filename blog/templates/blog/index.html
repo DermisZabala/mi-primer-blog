@@ -1,22 +1,36 @@
+{% load static %} <!-- cargando la carpeta donde se encuentra el css -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}"> <!-- llamando al archivo css -->
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-    <div>
+    <div class="cabeza-pagina">
         <h1><a href="#">Bienvenido al blog de Hamel</a></h1>
     </div>
 
-    {% for publicacion in publicaciones %}
-        <div>
-            <h2>{{ publicacion.titulo }}</h2>
-            <p>{{ publicacion.texto|linebreaksbr }}</p> 
-            <p>Fecha publicacion: {{ publicacion.fecha_publicacion }}</p>
-            <p>Autor: {{ publicacion.autor }}</p>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for publicacion in publicaciones %}
+                    <div class="publicaciones">
+                        <h2><a href="#">{{ publicacion.titulo }}</a></h2>
+                        <p>{{ publicacion.texto|linebreaksbr }}</p> 
+                        <div class="date">
+                            <p>Fecha publicacion: {{ publicacion.fecha_publicacion }}</p>
+                        </div>
+                        <p>Autor: {{ publicacion.autor }}</p>
+                    </div>
+                {% endfor %}  
+            </div>
         </div>
-    {% endfor %}    
+    </div>
 </body>
 </html>

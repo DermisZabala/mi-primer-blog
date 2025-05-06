@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- Encabezado de la Página --- */
+.cabeza-pagina {
+    background-color: #2c3e50;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 5px solid #ccc;
+}
+
+.cabeza-pagina h1 a,
+.cabeza-pagina h1 a:visited,
+.cabeza-pagina h1 a:active {
+    font-family: 'Lobster', cursive;
+    color: #ffffff;
+    font-size: 2.5em;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: color 0.3s ease;
+}
+
+.cabeza-pagina h1 a:hover {
+    color: #f1c40f;
+}
+
+/* --- Contenedor Principal del Contenido --- */
+.content.container {
+    background-color: #ffffff;
+    padding: 30px 30px 0 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Estilos para las Publicaciones Individuales --- */
+.publicaciones {
+    background-color: #fdfdfd;
+    padding: 25px;
+    margin-bottom: 40px;
+    border-left: 5px solid #C25100;
+    border-color: #ccc;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    width: 750px; /* Manteniendo el ancho que tenías */
+    overflow: hidden; /* NUEVO: Necesario para contener los floats de fecha y autor de forma simple */
+                      /* Alternativamente, podrías usar un clearfix más explícito (ver abajo) */
+}
+
+.publicaciones:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.publicaciones h2 {
+    margin-top: 0;
+}
+
+.publicaciones h2 a,
+.publicaciones h2 a:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #34495e;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.publicaciones h2 a:hover {
+    color: #C25100;
+}
+
+/* Párrafo principal del post (el texto de la publicación) */
+/* Asumimos que es el primer <p> después del <h2> o el único <p> que no es el del autor */
+.publicaciones > p:not(:last-child):not(.date p) { /* Ajuste para ser más específico si .date es el último */
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 20px; /* NUEVO: Espacio entre el texto del post y la línea de metadatos */
+}
+
+
+/* --- Metadatos de la Publicación (Fecha, Autor) --- */
+
+/* Contenedor de la fecha de publicación */
+.date {
+    float: left;             /* NUEVO: Flota la fecha a la izquierda */
+    font-size: 0.9em;
+    color: #7f8c8d;
+    /* margin-bottom: 15px; */ /* MODIFICADO: Eliminado, ya que ahora está en línea */
+    margin-bottom: 0;        /* Aseguramos que no haya margen inferior */
+    padding-right: 10px;     /* Opcional: Pequeño espacio si el texto del autor es largo y se acerca mucho */
+}
+/* Estilo para el párrafo dentro del div .date */
+.publicaciones .date p {
+    margin: 0; /* NUEVO: Elimina márgenes por defecto del párrafo dentro de .date */
+    line-height: 1.5; /* NUEVO: Ajuste para mejor alineación vertical con el autor */
+}
+
+
+/* Párrafo del autor (asumido como el último <p> dentro de .publicaciones) */
+/* Este selector asume que el <p> del autor es el último elemento de tipo <p> Y el último hijo.
+   Si .date (que es un div) fuera el último hijo, este selector aún se aplicaría al <p> del autor
+   siempre que sea el último PÁRRAFO.
+   Dado tu HTML: <div class="date">...</div> <p>Autor...</p> -> p:last-child funciona.
+*/
+.publicaciones > p:last-child { /* Este es el párrafo del autor */
+    float: right;            /* NUEVO: Flota el autor a la derecha */
+    font-size: 0.9em;
+    color: #7f8c8d;
+    font-style: italic;
+    /* margin-top: 15px; */  /* MODIFICADO: Eliminado, ya que ahora está en línea */
+    margin-top: 0;         /* Aseguramos que no haya margen superior */
+    margin-bottom: 0;      /* Ya estaba, pero lo mantenemos */
+    line-height: 1.5;      /* NUEVO: Ajuste para mejor alineación vertical con la fecha */
+    padding-left: 10px;    /* Opcional: Pequeño espacio si el texto de la fecha es largo */
+}
+
+/* --- Estilos Generales para Enlaces (opcional, pero buena práctica) --- */
+a {
+    color: #C25100;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #e67e22;
+}
+
+/* --- Estilos para Elementos no presentes en tu HTML actual pero sí en tu CSS original (los mantengo por si los usas) --- */
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+/* --- Responsividad: Ajustes para pantallas más pequeñas --- */
+@media (max-width: 768px) {
+    .cabeza-pagina h1 a {
+        font-size: 1.9em;
+    }
+
+    /* AJUSTE PARA .publicaciones EN MÓVILES SI USAS 'width' FIJO */
+    .publicaciones {
+        width: 100%; /* Que ocupe un porcentaje en lugar de un ancho fijo */
+        /* O max-width: 100%; si quieres que no exceda el contenedor */
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .publicaciones h2 a {
+        font-size: 1em;
+    }
+
+    .content.container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+}
+
+/* NUEVA MEDIA QUERY PARA METADATOS EN PANTALLAS MUY PEQUEÑAS */
+@media (max-width: 480px) {
+    .publicaciones .date,
+    .publicaciones > p:last-child { /* El párrafo del autor */
+        float: none;             /* Quita el float */
+        display: block;          /* Hace que cada uno ocupe su propia línea */
+        width: 100%;             /* Ocupa el ancho completo */
+        text-align: left;        /* Alinea el texto a la izquierda */
+        padding-left: 0;         /* Resetea padding si se añadió */
+        padding-right: 0;        /* Resetea padding si se añadió */
+    }
+
+    .publicaciones .date {
+        margin-bottom: 5px;      /* Pequeño espacio entre la fecha (arriba) y el autor (abajo) */
+    }
+
+    /* El selector del texto principal del post podría necesitar ajuste si se vuelve muy complejo */
+    .publicaciones > p:not(:last-child):not(.date p) {
+        font-size: 1em; /* Ajustar tamaño si es necesario en móviles */
+    }
+}
