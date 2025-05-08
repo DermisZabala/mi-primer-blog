@@ -1,36 +1,33 @@
-{% load static %} <!-- cargando la carpeta donde se encuentra el css -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <title>Blog</title>
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}"> <!-- llamando al archivo css -->
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<!-- tu_app/templates/tu_app/lista_publicaciones.html (o la ruta que corresponda) -->
+{% extends "blog/base.html" %} <!-- Asegúrate que la ruta a base.html sea correcta -->
+{% load static %} <!-- Puede ser necesario si usas `static` dentro de los bloques -->
 
-</head>
-<body>
-    <div class="cabeza-pagina">
-        <h1><a href="#">Bienvenido al blog de Hamel</a></h1>
-    </div>
+{% block title %}Publicaciones Recientes - {{ block.super }}{% endblock %}
+<!-- block.super incluye el contenido del bloque title del padre -->
 
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
+{% block content %}
+    <div class="row">
+        <div class="col-md-8"> <!-- Centrando la columna de posts si solo hay una -->
+            {% if publicaciones %}
                 {% for publicacion in publicaciones %}
                     <div class="publicaciones">
-                        <h2><a href="#">{{ publicacion.titulo }}</a></h2>
-                        <p>{{ publicacion.texto|linebreaksbr }}</p> 
+                        <h2><a href="{% url 'detalle_publicacion' publicacion.pk %}">{{ publicacion.titulo }}</a></h2>
+                        <!-- He cambiado href="#" por una URL para el detalle del post -->
+
+                        {% if publicacion.texto|wordcount > 50 %}
+                            <p>{{ publicacion.texto|truncatewords_html:50|safe }}</p>
+                        {% else %}
+                            <p>{{ publicacion.texto|linebreaksbr }}</p>
+                        {% endif %}
                         <div class="date">
                             <p>Fecha publicacion: {{ publicacion.fecha_publicacion }}</p>
                         </div>
                         <p>Autor: {{ publicacion.autor }}</p>
                     </div>
-                {% endfor %}  
-            </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">Aún no hay publicaciones. ¡Vuelve pronto!</p>
+            {% endif %}
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

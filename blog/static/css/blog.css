@@ -156,6 +156,51 @@ a:hover {
     margin-right: 20px;
 }
 
+/* static/css/blog.css */
+
+/* ... tus otros estilos ... */
+
+.pie-pagina {
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: #f8f8f8; /* Un color de fondo suave para el pie de página */
+    border-top: 1px solid #e7e7e7;
+    color: #777; /* Color de texto para el pie de página */
+}
+
+.pie-pagina a {
+    color: #555; /* Color de los enlaces en el pie de página */
+}
+
+.pie-pagina a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* Estilos para metadatos del post */
+.post-meta {
+    overflow: hidden; /* Para contener el float si usas pull-right */
+    margin-top: 15px;
+    padding-top: 10px; /* Espacio sobre los metadatos */
+    border-top: 1px solid #eee; /* Línea divisoria sutil */
+    font-size: 0.9em;
+    color: #777;
+}
+
+.post-meta .date .glyphicon,
+.post-meta .author .glyphicon {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+/* (Si no usas pull-right y prefieres float manual)
+.post-meta .date {
+    float: left;
+}
+.post-meta .author {
+    float: right;
+}
+*/
+
 /* --- Responsividad: Ajustes para pantallas más pequeñas --- */
 @media (max-width: 768px) {
     .cabeza-pagina h1 a {

@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ publicacion.titulo }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="publicaciones">
+        <h2>{{ publicacion.titulo }}</h2>
+        <p>{{ publicacion.texto|linebreaks }}</p>
+        <p><strong>Autor:</strong> {{ publicacion.autor }}</p>
+        <p><strong>Fecha:</strong> {{ publicacion.fecha_publicacion }}</p>
+    </div>
+{% endblock %}
