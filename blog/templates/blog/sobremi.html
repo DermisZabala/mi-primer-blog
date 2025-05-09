@@ -1,0 +1,59 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Sobre mi{{ publicacion.titulo }} - {{ block.super }}{% endblock %}
+
+{# Aquí definimos el bloque para CSS adicional #}
+{% block extra_css %}
+{{ block.super }} {# Opcional: si quieres incluir el contenido del bloque extra_css del padre #}
+    <link rel="stylesheet" href="{% static 'css/sobremi.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="presentation-card">
+    <div class="profile-pic-container">
+        <!-- Reemplaza 'profile_placeholder.png' con el nombre de tu imagen -->
+        <img src="{% static 'img/ft-formal1.png' %}" alt="Foto de Dermis H. Zabala" class="profile-pic">
+    </div>
+
+    <h1 class="name">Dermis H. Zabala</h1>
+    <p class="title">Estudiante de Ingeniería en Sistemas</p>
+
+    <div class="description">
+        <p>
+            Soy un estudiante de Ingeniería en Sistemas en la Universidad Dominicana O&M,
+            con interés en el desarrollo de aplicaciones.
+        </p>
+    </div>
+
+    <div class="contact-info">
+        <p class="contact-item">
+            <!-- Icono de email (opcional, necesitarías FontAwesome o un SVG) -->
+            <span>📧</span> <a href="mailto:dermiszabala@gmail.com">dermiszabala@gmail.com</a>
+        </p>
+        <p class="contact-item">
+            <!-- Icono de teléfono (opcional) -->
+            <span>📞</span> <a href="tel:+18296623269">829-662-3269</a>
+        </p>
+        <p class="location">
+            <!-- Icono de ubicación (opcional) -->
+            <span>📍</span> República Dominicana, San Cristóbal
+        </p>
+    </div>
+
+    <div class="social-links">
+        <p class="social-item">
+            <!-- Icono de GitHub (opcional) -->
+            <span><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" style="width:16px; height:16px; vertical-align:middle;"></span>
+            <a href="https://github.com/DermisZabala" target="_blank" rel="noopener noreferrer">GitHub: DermisZabala</a>
+        </p>
+        <p class="social-item">
+            <!-- Icono de Facebook (opcional) -->
+            <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/100px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook" style="width:16px; height:16px; vertical-align:middle;"></span>
+            <a href="https://www.facebook.com/profile.php?id=100078728500131" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,118 @@
+/* === ESTILOS PARA LA TARJETA DE PRESENTACIÓN (INICIO) === */
+
+.presentation-card-wrapper {
+    /* centrar la tarjeta en una sección específica de tu página: */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Para que no estire si hay poco contenido */
+    padding: 40px 20px; /* Espacio alrededor de la tarjeta */
+}
+
+.presentation-card {
+    background-color: #ffffff; /* Color de tu paleta */
+    color: #333;             /* Color de tu paleta */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 62, 80, 0.15); /* Usando #2c3e50 como base para la sombra */
+    max-width: 450px;        /* Un poco más ancha si quieres */
+    width: 100%;
+    padding: 35px;
+    margin: 20px;
+    text-align: center;
+    border: 1px solid #e7e7e7; /* Borde sutil de tu paleta */
+    font-family: 'Roboto', sans-serif; /* Hereda de tu body, pero podemos ser explícitos */
+}
+
+.presentation-card .profile-pic-container {
+    margin-bottom: 25px;
+}
+
+.presentation-card .profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;      /* Para hacerla redonda */
+    object-fit: cover;       /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    border: 5px solid #2B5D98; /* Color de tu paleta para el borde */
+    box-shadow: 0 0 10px rgba(43, 93, 152, 0.3); /* Sombra sutil para la foto */
+}
+
+.presentation-card .name {
+    font-size: 2em;         /* Un poco más grande */
+    color: #2c3e50;        /* Color de tu paleta */
+    margin-bottom: 8px;
+    font-family: 'Roboto', sans-serif; /* Aseguramos la fuente */
+    font-weight: 700;      /* Más peso para el nombre */
+}
+
+.presentation-card .title {
+    font-size: 1.15em;
+    color: #34495e;        /* Color de tu paleta */
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.presentation-card .description {
+    font-size: 1em;
+    color: #555;           /* Color de tu paleta */
+    margin-bottom: 30px;
+    line-height: 1.7;
+    padding: 0 15px; /* Para que no llegue a los bordes si el texto es largo */
+}
+
+.presentation-card .contact-info,
+.presentation-card .social-links {
+    margin-bottom: 25px;
+}
+
+.presentation-card .contact-info p,
+.presentation-card .social-links p {
+    margin: 10px 0;
+    font-size: 0.95em;
+}
+
+.presentation-card .contact-item,
+.presentation-card .social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espacio entre icono y texto */
+}
+
+/* Estilo para los iconos de imagen que pusiste */
+.presentation-card .social-item img,
+.presentation-card .contact-item img { /* Si decides usar imágenes para iconos de contacto también */
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.presentation-card .contact-info a,
+.presentation-card .social-links a {
+    color: #2B5D98;        /* Color de tu paleta para enlaces */
+    text-decoration: none;
+    font-weight: 500; /* Un poco más de peso para los enlaces */
+    transition: color 0.3s ease;
+}
+
+.presentation-card .contact-info a:hover,
+.presentation-card .social-links a:hover {
+    color: #5ca1f0;        /* Color de tu paleta para hover */
+    text-decoration: none; /* Puedes quitar el underline si prefieres */
+}
+
+.presentation-card .location {
+    font-size: 0.9em;
+    color: #777;           /* Color de tu paleta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Si usas los emojis como iconos, puedes darles estilo */
+.presentation-card .contact-item span,
+.presentation-card .social-item span {
+    font-size: 1.2em; /* Ajusta el tamaño del emoji si es necesario */
+    color: #3e5771; /* Un color de tu paleta para los emojis */
+}
+
+/* === ESTILOS PARA LA TARJETA DE PRESENTACIÓN (FIN) === */

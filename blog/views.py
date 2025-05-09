@@ -12,3 +12,15 @@ def listas_publicaciones(request):
 def detalle_publicacion(request, pk):
     publicacion = get_object_or_404(Publicar, pk=pk)
     return render(request, 'blog/detalle_publicacion.html', {'publicacion': publicacion})
+
+def sobre_mi(request):
+    return render(request, 'blog/sobremi.html')
+
+def inicio_sesion(request):
+    return render(request, 'blog/inicio_sesion.html')
+
+def registro(request):
+    return render(request, 'blog/registrarse.html')
+
+def contacto(request):
+    return render(request, 'blog/contacto.html')

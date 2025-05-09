@@ -14,15 +14,36 @@
 
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <script type="module" src="{% static 'js/script.js' %}"></script>
 
     <title>{% block title %}Blog de Hamel{% endblock %}</title>
+
+    {# Aquí definimos el bloque para CSS adicional #}
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- ENCABEZADO (Header) -->
     <header class="cabeza-pagina">
-        <div class="container"> <!-- Es buena práctica envolver el contenido del header en un container también -->
-            <h1><a href="#">Bienvenido al blog de Hamel</a></h1>
-            <!-- Podrías añadir un menú de navegación aquí si lo necesitas -->
+        <div class="header-container"> {# Contenedor principal para alinear logo y nav/hamburguesa #}
+            <div class="logo-area"> {# Contenedor para tu título/logo #}
+                <h1><a href="{% url 'listas_publicaciones' %}">Bienvenido al blog de Hamel</a></h1>
+                {# Reemplaza 'nombre_de_tu_url_home' con el nombre de tu URL de la página principal #}
+            </div>
+    
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="{% url 'sobre_mi' %}">Sobre mi</a></li>
+                    <li><a href="{% url 'inicio_sesion' %}">Iniciar sesion</a></li>
+                    <li><a href="{% url 'registro' %}">Resgistrarse</a></li>
+                    <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                    {# Reemplaza con tus URLs reales usando {% url '...' %} #}
+                </ul>
+            </nav>
+    
+            <button class="hamburger" id="hamburgerButton" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mainNav">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </header>
 

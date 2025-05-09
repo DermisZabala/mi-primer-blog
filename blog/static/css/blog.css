@@ -9,27 +9,96 @@ body {
     line-height: 1.6;
 }
 
-/* --- Encabezado de la Página --- */
+/* --- ESTILOS NUEVOS/MODIFICADOS PARA EL HEADER RESPONSIVO --- */
+
+/* Ajustes al contenedor principal del header */
 .cabeza-pagina {
     background-color: #2c3e50;
-    padding: 40px 20px;
-    text-align: center;
+    padding: 10px; 
     border-bottom: 5px solid #ccc;
+    position: relative; /* Necesario para el posicionamiento absoluto del menú móvil */
 }
 
-.cabeza-pagina h1 a,
-.cabeza-pagina h1 a:visited,
-.cabeza-pagina h1 a:active {
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* O el ancho que prefieras para tu contenido */
+    margin: 0 auto;    /* Centrar el contenedor */
+    padding: 0 20px;   /* Espaciado lateral dentro del contenedor */
+}
+
+/* Estilos para el área del logo (tu h1) */
+.logo-area h1 {
+    margin: 0; /* Elimina márgenes por defecto del h1 */
+}
+
+.logo-area h1 a,
+.logo-area h1 a:visited {
     font-family: 'Lobster', cursive;
     color: #ffffff;
-    font-size: 2.5em;
+    font-size: 1.2em;
     text-decoration: none;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     transition: color 0.3s ease;
 }
 
-.cabeza-pagina h1 a:hover {
-    color: #f1c40f;
+.logo-area h1 a:active{
+    color: #5ca1f0;
+    font-size: 1.4em;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: color 0.3s ease;
+}
+
+/* Estilos para la Navegación Principal (Desktop) */
+.main-nav .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Alinea los ítems horizontalmente */
+}
+
+.main-nav .nav-links li {
+    margin-left: 25px; /* Espacio entre elementos del menú */
+
+    text-align: center;
+}
+
+.main-nav .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em; /* O el tamaño que prefieras */
+    padding: 8px 12px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-nav .nav-links a:hover {
+    background-color: #3e5771; /* Color de fondo al pasar el ratón */
+    color: #9dcbff; /* Opcional: cambiar color del texto también */
+}
+
+/* Estilos para el Botón Hamburguesa */
+.hamburger {
+    display: none; /* Oculto en desktop */
+    background: none;
+    border: none;
+    color: white; /* Para que el aria-label sea leído en blanco si no hay texto visible */
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Asegura que esté sobre el menú desplegable */
+}
+
+.hamburger-line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 6px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
 }
 
 /* --- Contenedor Principal del Contenido --- */
@@ -50,7 +119,7 @@ body {
     background-color: #fdfdfd;
     padding: 25px;
     margin-bottom: 40px;
-    border-left: 5px solid #C25100;
+    border-left: 5px solid #2B5D98;
     border-color: #ccc;
     border-radius: 0 8px 8px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -75,12 +144,12 @@ body {
     font-weight: bold;
     color: #34495e;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1em;
     transition: color 0.3s ease;
 }
 
 .publicaciones h2 a:hover {
-    color: #C25100;
+    color: #5ca1f0;
 }
 
 /* Párrafo principal del post (el texto de la publicación) */
@@ -131,13 +200,8 @@ body {
 
 /* --- Estilos Generales para Enlaces (opcional, pero buena práctica) --- */
 a {
-    color: #C25100;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
-}
-
-a:hover {
-    color: #e67e22;
 }
 
 /* --- Estilos para Elementos no presentes en tu HTML actual pero sí en tu CSS original (los mantengo por si los usas) --- */
@@ -192,36 +256,88 @@ a:hover {
     margin-right: 5px; /* Espacio entre el icono y el texto */
 }
 
-/* (Si no usas pull-right y prefieres float manual)
-.post-meta .date {
-    float: left;
-}
-.post-meta .author {
-    float: right;
-}
-*/
-
 /* --- Responsividad: Ajustes para pantallas más pequeñas --- */
-@media (max-width: 768px) {
+@media (max-width: 1077px) {
     .cabeza-pagina h1 a {
-        font-size: 1.9em;
+        font-size: .9em;
+    }
+
+    .logo-area h1 a:active{
+        font-size: 1em;
+        color: #5ca1f0;
     }
 
     /* AJUSTE PARA .publicaciones EN MÓVILES SI USAS 'width' FIJO */
     .publicaciones {
         width: 100%; /* Que ocupe un porcentaje en lugar de un ancho fijo */
-        /* O max-width: 100%; si quieres que no exceda el contenedor */
+        max-width: 100%; /* si quieres que no exceda el contenedor */
         padding: 20px;
         margin-bottom: 30px;
     }
 
     .publicaciones h2 a {
-        font-size: 1em;
+        font-size: .7em;
     }
 
     .content.container {
         padding: 20px;
         margin-top: 20px;
+    }
+    .main-nav {
+        display: none; /* Ocultar el menú de navegación */
+        position: absolute;
+        top: 100%; /* Justo debajo de la cabecera (.cabeza-pagina) */
+        left: 0;
+        right: 0;
+        background-color: #34495e; /* Un fondo para el menú desplegado */
+        border-top: 1px solid #4a657e;
+        z-index: 1000;
+        padding-top: 10px; /* Espacio arriba */
+        padding-bottom: 10px; /* Espacio abajo */
+    }
+
+    .main-nav.is-active {
+        display: block; /* Mostrar el menú cuando se active con JS */
+    }
+
+    .main-nav .nav-links {
+        flex-direction: column; /* Apilar los enlaces verticalmente */
+        align-items: stretch; /* Que los enlaces ocupen todo el ancho */
+    }
+
+    .main-nav .nav-links li {
+        margin-left: 0; /* Resetear margen */
+        text-align: center; /* Centrar texto de los enlaces */
+    }
+
+    .main-nav .nav-links a {
+        padding: 12px 20px; /* Más padding para facilitar el toque */
+        border-bottom: 1px solid #4a657e; /* Separador entre enlaces */
+        font-size: 1.3em;
+    }
+
+    .main-nav .nav-links li:last-child a {
+        border-bottom: none; /* Sin borde para el último ítem */
+    }
+    
+    .main-nav .nav-links a:hover {
+        background-color: #4a657e; /* Hover para el menú móvil */
+        color: #9dcbff;
+    }
+
+    .hamburger {
+        display: block; /* Mostrar el botón de hamburguesa */
+    }
+
+    /* Animación del botón hamburguesa a "X" */
+    .hamburger.is-active .hamburger-line:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.is-active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.is-active .hamburger-line:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
 }
 
@@ -244,5 +360,14 @@ a:hover {
     /* El selector del texto principal del post podría necesitar ajuste si se vuelve muy complejo */
     .publicaciones > p:not(:last-child):not(.date p) {
         font-size: 1em; /* Ajustar tamaño si es necesario en móviles */
+    }
+
+    .cabeza-pagina h1 a {
+        font-size: .83em;
+    }
+
+    .logo-area h1 a:active{
+        font-size: .84em;
+        color: #5ca1f0;
     }
 }
