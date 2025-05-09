@@ -363,11 +363,11 @@ a {
     }
 
     .cabeza-pagina h1 a {
-        font-size: .83em;
+        font-size: .6em;
     }
 
     .logo-area h1 a:active{
-        font-size: .84em;
+        font-size: .62em;
         color: #5ca1f0;
     }
 }
