@@ -1,0 +1,144 @@
+/* static/css/registro_styles.css */
+
+/* Contenedor principal para la página de registro */
+.register-page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 550px; /* Un poco más ancho para formularios de registro que pueden tener más campos */
+}
+
+/* Título "Registro" */
+.register-page-content h2 {
+    color: #2c3e50; /* (#2c3e50) */
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: 600;
+    border-bottom: 1px solid #e7e7e7; /* (#e7e7e7) */
+    padding-bottom: 20px;
+}
+
+/* Formulario de registro */
+.register-page-content form {
+    background-color: #ffffff; /* (#ffffff) */
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12); /* (rgba similar a tu paleta) */
+    width: 100%;
+    max-width: 480px; /* Ancho del formulario en sí */
+    border-top: 5px solid #5ca1f0; /* (#5ca1f0) - Un color diferente para distinguir de login si quieres */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre los <p> generados por {{ formulario.as_p }} y el botón */
+    box-sizing: border-box;
+}
+
+/* Estilos para los <p> generados por {{ formulario.as_p }} */
+.register-page-content form p {
+    margin: 0 0 12px 0; /* Espacio debajo de cada campo */
+    display: flex;
+    flex-direction: column; /* Label arriba, input abajo */
+    gap: 8px; /* Espacio entre label e input dentro del <p> */
+}
+
+/* Labels dentro de los <p> generados por {{ formulario.as_p }} */
+.register-page-content form p label {
+    font-weight: 600;
+    color: #34495e; /* (#34495e) */
+    font-size: 0.95em;
+}
+
+/* Inputs, Textareas, Selects dentro de los <p> generados por {{ formulario.as_p }} */
+.register-page-content form p input[type="text"],
+.register-page-content form p input[type="email"],
+.register-page-content form p input[type="password"],
+.register-page-content form p textarea, /* Por si tu formulario de registro usa textarea */
+.register-page-content form p select {  /* Por si usa select */
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc; /* (#ccc) */
+    border-radius: 5px;
+    font-size: 1em;
+    color: #555; /* (#555) */
+    background-color: #fdfdfd; /* (#fdfdfd) */
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-page-content form p input:focus,
+.register-page-content form p textarea:focus,
+.register-page-content form p select:focus {
+    outline: none;
+    border-color: #5ca1f0; /* (#5ca1f0) */
+    box-shadow: 0 0 0 3px rgba(92, 161, 240, 0.25); /* (rgba similar a tu paleta) */
+}
+
+/* Estilos para errores de campo y texto de ayuda (si tu formulario los genera con .as_p) */
+.register-page-content form p ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    color: #D23C3C; /* Rojo para errores */
+    font-size: 0.85em;
+}
+
+.register-page-content form p span.helptext {
+    font-size: 0.8em;
+    color: #7f8c8d; /* (#7f8c8d) */
+    display: block;
+    margin-top: 4px;
+}
+
+
+/* Botón de submit */
+.register-page-content form button[type="submit"] {
+    background-color: #5ca1f0; /* (#5ca1f0) - Un azul diferente para el botón de registro */
+    color: #ffffff; /* (#ffffff) */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.05em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 15px; /* Espacio arriba del botón */
+    align-self: center; /* Centrar el botón si el form es flex */
+    min-width: 150px; /* Ancho mínimo para el botón */
+}
+
+.register-page-content form button[type="submit"]:hover {
+    background-color: #3e5771; /* (#3e5771) - Un tono más oscuro para hover */
+}
+
+.register-page-content form button[type="submit"]:active {
+    background-color: #4a657e; /* (#4a657e) */
+    transform: translateY(1px);
+}
+
+/* Párrafo con el enlace de login (si lo añades) */
+.register-page-content .login-prompt { 
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* (#eee) */
+    font-size: 0.95em;
+    color: #777; /* (#777) */
+    width: 100%; 
+    max-width: 480px; /* Coincide con el ancho del form */
+}
+
+.register-page-content .login-prompt a {
+    color: #5ca1f0; /* (#5ca1f0) */
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-page-content .login-prompt a:hover {
+    text-decoration: underline;
+    color: #3e5771; /* (#3e5771) */
+}

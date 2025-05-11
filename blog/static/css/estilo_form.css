@@ -1,0 +1,150 @@
+/* --- Estilos para el contenido dentro de {% block content %} --- */
+
+/* Contenedor implícito del bloque de contenido (puedes ajustar el selector si tienes uno específico) */
+/* Asumimos que el body ya tiene un fondo y fuente base como en el ejemplo anterior */
+/* Si solo quieres estilizar DENTRO del block content, y este no tiene un div contenedor propio con clase, */
+/* los estilos se aplicarán directamente a los elementos h2, form, etc. */
+
+/* --- Título del Formulario --- */
+h2 { /* Estilo para el <h2> generado por {% if form.instance.pk %}... */
+    color: #2c3e50; /* Azul oscuro para el título */
+    text-align: center;
+    margin-top: 20px; /* Ajusta según sea necesario si está dentro de un contenedor con padding */
+    margin-bottom: 30px;
+    font-weight: 600;
+    border-bottom: 1px solid #e7e7e7; /* Línea divisoria sutil */
+    padding-bottom: 15px;
+}
+
+/* --- Estilos para el Formulario en sí --- */
+form { /* Estilo para la etiqueta <form> */
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12); /* Sombra sutil */
+    width: 100%;
+    max-width: 600px; /* Ancho máximo para legibilidad */
+    margin: 20px auto; /* Centrar el formulario si es un bloque */
+    border-top: 4px solid #2B5D98; /* Borde superior de acento */
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Espacio entre elementos directos del form */
+}
+
+/* 
+   Estilos para los <p> generados por `{{ form.as_p }}`
+   y para los <label> y <input>/<textarea> manuales.
+   Intentaremos que ambos se vean similares.
+*/
+
+/* Para los <p> de form.as_p */
+form p {
+    margin: 0 0 10px 0; /* Espacio debajo de cada campo de form.as_p */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+form p label { /* Labels dentro de los <p> de form.as_p */
+    font-weight: 500;
+    color: #34495e; /* Azul-gris para labels */
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+form p input[type="text"],
+form p textarea { /* Inputs/Textareas dentro de los <p> de form.as_p */
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #555;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form p input[type="text"]:focus,
+form p textarea:focus {
+    outline: none;
+    border-color: #5ca1f0;
+    box-shadow: 0 0 0 2px rgba(92, 161, 240, 0.2);
+}
+
+form p textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Para los <label> y <input>/<textarea> manuales que están directamente en el form */
+form > label { /* Labels manuales, hijos directos del form */
+    font-weight: 500;
+    color: #34495e; /* Azul-gris para labels */
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px; /* Pequeño espacio si vienen después de form.as_p */
+}
+
+form > input[type="text"],
+form > textarea { 
+    /* Inputs/Textareas manuales, hijos directos del form */
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #555;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Espacio debajo de cada campo manual */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form > input[type="text"]:focus,
+form > textarea:focus {
+    outline: none;
+    border-color: #5ca1f0;
+    box-shadow: 0 0 0 2px rgba(92, 161, 240, 0.2);
+}
+
+form > textarea#texto-publicacion { /* Específico para tu textarea manual */
+    min-height: 120px;
+    resize: vertical;
+}
+
+
+/* --- Estilo para el Botón de Envío --- */
+form button[type="submit"] {
+    background-color: #2B5D98; /* Azul principal para el botón */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    align-self: center; /* Alinear el botón a la derecha */
+    margin-top: 10px; /* Espacio extra arriba del botón */
+    width: 150px;
+}
+
+form button[type="submit"]:hover {
+    background-color: #3e5771; /* Un azul más oscuro al pasar el mouse */
+}
+
+form button[type="submit"]:active {
+    background-color: #4a657e; /* Un poco más oscuro al hacer clic */
+    transform: translateY(1px); /* Efecto de presión sutil */
+}
+
+/* Ocultar CSRF token input si es visible, aunque usualmente es type="hidden" */
+form input[name="csrfmiddlewaretoken"] {
+    display: none;
+}
+
+form.publication-form p label {
+    color: #D23C3C !important; /* ¡SOLO PARA PRUEBAS! */
+    font-weight: 700 !important; /* ¡SOLO PARA PRUEBAS! */
+}

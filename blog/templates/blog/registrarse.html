@@ -1,9 +1,20 @@
 {% extends "blog/base.html" %}
 
 {% block title %}Registro{{ publicacion.titulo }} - {{ block.super }}{% endblock %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+{% endblock %}
 
 {% block content %}
-
-
-
+    <div class="register-page-content">
+        <h2>Registro</h2>
+        <form method="POST" action="{% url 'registro' %}">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit">Registrarse</button>
+        </form>
+        <p class="login-prompt">¿Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar Sesión</a></p>
+    </div>
 {% endblock %}

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig', # agregando mi aplicacion blog en setting.py de misitio
+    'cuentas',
 ]
 
 MIDDLEWARE = [

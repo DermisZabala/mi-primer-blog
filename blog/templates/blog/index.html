@@ -5,6 +5,11 @@
 {% block title %}Publicaciones Recientes - {{ block.super }}{% endblock %}
 <!-- block.super incluye el contenido del bloque title del padre -->
 
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/publicacion.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-md-8"> <!-- Centrando la columna de posts si solo hay una -->

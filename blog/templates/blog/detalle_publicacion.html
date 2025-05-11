@@ -4,7 +4,12 @@
 
 {% block content %}
     <div class="publicaciones">
-        <h2>{{ publicacion.titulo }}</h2>
+       <div class="titulo" style="display: flex;
+            justify-content: space-between;
+            align-items: center;">
+            <h2 style="margin: 0; font-weight: bold;">{{ publicacion.titulo }}</h2>
+            <a class="btn btn-default" href="{% url 'editar_publicacion' publicacion.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
         <p>{{ publicacion.texto|linebreaks }}</p>
         <p><strong>Autor:</strong> {{ publicacion.autor }}</p>
         <p><strong>Fecha:</strong> {{ publicacion.fecha_publicacion }}</p>

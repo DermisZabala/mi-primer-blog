@@ -1,0 +1,118 @@
+/* static/css/inicio_sesion.css */
+
+/* Contenedor principal para la página de inicio de sesión */
+.login-page-content {
+    display: flex;
+    flex-direction: column; /* Apila h2, form, p */
+    align-items: center; /* Centra los elementos hijos horizontalmente */
+    padding: 20px; /* Coincide con register-page-content */
+    width: 100%;
+    margin: 0 auto;
+    max-width: 550px; /* Coincide con register-page-content */
+}
+
+/* Título "Inicio de sesion" */
+.login-page-content h2 {
+    color: #2c3e50;
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: 600;
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 20px;
+}
+
+/* Formulario de inicio de sesión */
+.login-page-content form {
+    background-color: #ffffff;
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 480px; /* Coincide con register form max-width */
+    border-top: 5px solid #5ca1f0; /* Azul de register form (#5ca1f0) */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio similar al gap de register form (entre <p>s) */
+    box-sizing: border-box;
+}
+
+/* Labels dentro del formulario */
+.login-page-content form label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 0.95em;
+    margin-bottom: 8px; /* Espacio entre label e input, similar al gap interno del <p> en register */
+}
+
+/* Inputs dentro del formulario */
+.login-page-content form input[type="text"],
+.login-page-content form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #555;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* El gap del form (10px) se aplicará después de este input, antes del siguiente label */
+}
+
+.login-page-content form input[type="text"]:focus,
+.login-page-content form input[type="password"]:focus {
+    outline: none;
+    border-color: #5ca1f0; /* Color de foco de register */
+    box-shadow: 0 0 0 3px rgba(92, 161, 240, 0.25); /* Sombra de foco de register */
+}
+
+/* Botón de submit */
+.login-page-content form button[type="submit"] {
+    background-color: #5ca1f0; /* Azul de botón de register (#5ca1f0) */
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.05em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 15px; /* Coincide con register button margin-top */
+    align-self: center; /* Coincide con register button align-self */
+    min-width: 150px; /* Coincide con register button min-width */
+}
+
+.login-page-content form button[type="submit"]:hover {
+    background-color: #3e5771; /* Coincide con register button hover */
+}
+
+.login-page-content form button[type="submit"]:active {
+    background-color: #4a657e; /* Coincide con register button active */
+    transform: translateY(1px);
+}
+
+/* Párrafo con el enlace de registro */
+.login-page-content .mensaje-registro {
+    text-align: center;
+    margin-top: 30px; /* Coincide con register .login-prompt margin-top */
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.95em;
+    color: #777;
+    width: 100%;
+    max-width: 480px; /* Coincide con register .login-prompt max-width (y form width) */
+}
+
+.login-page-content .mensaje-registro a {
+    color: #5ca1f0; /* Azul de register link (#5ca1f0) */
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-page-content .mensaje-registro a:hover {
+    text-decoration: underline;
+    color: #3e5771; /* Coincide con register link hover */
+}

@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% load static %} <!-- Puede ser necesario si usas `static` dentro de los bloques -->
+
+{% block title %}Editar publicaciones - {{ block.super }}{% endblock %}
+<!-- block.super incluye el contenido del bloque title del padre -->
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/estilo_form.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2>{{ titulo }}</h2>
+    <form method="POST" action="{% url 'nueva_publicacion' %}"> {% comment %} O action="{% url 'nombre_de_tu_url_para_nueva_publicacion' %}" {% endcomment %}
+        {% csrf_token %}
+        {{ formulario.as_p }}  {# Esto renderizará todos los campos definidos en tu PublicarForm (titulo y texto) #}
+        
+        <button type="submit">Guardar</button>
+    </form>
+{% endblock %}
