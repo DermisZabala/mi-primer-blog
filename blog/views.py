@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def listas_publicaciones(request):
-    publicaciones = Publicar.objects.filter(fecha_publicacion__lte=timezone.now()).order_by('-fecha_publicacion')
+    publicaciones = Publicar.objects.filter(fecha_publicacion__lte=timezone.now()).order_by('-fecha_creacion')
     
     return render(request, 'blog/index.html', {'publicaciones': publicaciones})
 
@@ -43,13 +43,11 @@ def nueva_publicacion(request):
     else:
         formulario = PublicarForm()
    
-    return render(request, 'blog/editar_publicacion.html', {'formulario': formulario, 'titulo': titulo})
+    return render(request, 'blog/nueva_publicacion.html', {'formulario': formulario, 'titulo': titulo})
 
 def editar_publicacion(request, pk):
     titulo = "Editar Publicaciones"
     publicacion = get_object_or_404(Publicar, pk=pk)
-    print(f"DEBUG: Título de la publicación obtenida: '{publicacion.titulo}'")
-    print(f"DEBUG: Texto de la publicación obtenida: '{publicacion.texto}'")
     if request.method == "POST":
         formulario = PublicarForm(request.POST, instance=publicacion)
         if formulario.is_valid():
@@ -60,5 +58,12 @@ def editar_publicacion(request, pk):
             return redirect('detalle_publicacion', pk=publicacion.pk)
     else:
         formulario = PublicarForm(instance=publicacion)
+    
+    context = {
+        'formulario': formulario,
+        'titulo': titulo,
+        'publicacion': publicacion
+    }
    
-    return render(request, 'blog/editar_publicacion.html', {'formulario': formulario, 'titulo': titulo})
+    return render(request, 'blog/editar_publicacion.html', context)
+ 

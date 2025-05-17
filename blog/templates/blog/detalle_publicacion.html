@@ -8,7 +8,11 @@
             justify-content: space-between;
             align-items: center;">
             <h2 style="margin: 0; font-weight: bold;">{{ publicacion.titulo }}</h2>
-            <a class="btn btn-default" href="{% url 'editar_publicacion' publicacion.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+            <!-- ocultandole el formulario de editar a los usuarios que no son autores del post -->
+            {% if user.is_authenticated and publicacion.autor.pk == user.pk %}
+                <a class="btn btn-default" href="{% url 'editar_publicacion' publicacion.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
         </div>
         <p>{{ publicacion.texto|linebreaks }}</p>
         <p><strong>Autor:</strong> {{ publicacion.autor }}</p>

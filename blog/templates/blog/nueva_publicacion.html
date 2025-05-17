@@ -2,7 +2,7 @@
 
 {% load static %} <!-- Puede ser necesario si usas `static` dentro de los bloques -->
 
-{% block title %}Editar publicaciones - {{ block.super }}{% endblock %}
+{% block title %}Agregar nueva publicacion - {{ block.super }}{% endblock %}
 <!-- block.super incluye el contenido del bloque title del padre -->
 
 {% block extra_css %}
@@ -11,7 +11,7 @@
 
 {% block content %}
     <h2>{{ titulo }}</h2>
-    <form method="POST" action="{% url 'editar_publicacion' pk=publicacion.pk %}"> {% comment %} O action="{% url 'nombre_de_tu_url_para_nueva_publicacion' %}" {% endcomment %}
+    <form method="POST" action="{% url 'nueva_publicacion' %}"> {% comment %} O action="{% url 'nombre_de_tu_url_para_nueva_publicacion' %}" {% endcomment %}
         {% csrf_token %}
         {{ formulario.as_p }}  {# Esto renderizará todos los campos definidos en tu PublicarForm (titulo y texto) #}
         

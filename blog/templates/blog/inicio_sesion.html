@@ -1,13 +1,37 @@
 {% extends "blog/base.html" %}
 {% load static %} 
 
-{% block title %}Inicio de sesion{{ publicacion.titulo }} - {{ block.super }}{% endblock %}
+{% block title %}Inicio de sesion - {{ block.super }}{% endblock %}
 
 {% block extra_css %} 
     <link rel="stylesheet" href="{% static 'css/inicio_sesion.css' %}">
 {% endblock %}
 
 {% block content %}
+    {% if messages %}
+       <ul class="messages" style="list-style: none; padding: 0;">
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <li class="alert alert-danger"
+                        style="padding: 10px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 4px;
+                            color: #a94442; background-color: #f2dede; border-color: #ebccd1;">
+                        {{ message }}
+                    </li>
+                {% elif message.tags == 'success' %}
+                    <li class="alert alert-success"
+                        style="padding: 10px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 4px;
+                            color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;">
+                        {{ message }}
+                    </li>
+                {% else %}
+                    <li class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="login-page-content">
         <h2>Inicio de sesion</h2>
         <form action="{% url 'login' %}" method="POST">

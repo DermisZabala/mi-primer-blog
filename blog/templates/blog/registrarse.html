@@ -1,18 +1,79 @@
 {% extends "blog/base.html" %}
-
-{% block title %}Registro{{ publicacion.titulo }} - {{ block.super }}{% endblock %}
 {% load static %}
+
+{% block title %}Registro - {{ block.super }}{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+    {# Estilo temporal para forzar la visibilidad de errores #}
+    <style>
+        .debug-error-list {
+            color: #a94442 !important;
+            background-color: #f2dede !important;
+            font-weight: bold !important;
+            list-style: square !important;
+            padding: 10px !important;
+            margin: 10px 0 !important;
+            border: 2px solid #ebccd1 !important;
+            display: block !important; /* Fuerza la visibilidad */
+        }
+        .debug-error-list li {
+             margin-bottom: 5px !important;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
+    {# --- Bloque para mensajes FLASH (login fallido, registro éxito, etc) --- #}
+    {% if messages %}
+        <ul class="messages" style="list-style: none; padding: 0;">
+            {% for message in messages %}
+                <li class="alert alert-{{ message.tags }}"
+                    style="padding: 10px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 4px;
+                           {% if message.tags == 'error' or message.tags == 'warning' %} /* Ajustado para warning tambien */
+                               color: #a94442; background-color: #f2dede; border-color: #ebccd1;
+                           {% elif message.tags == 'success' %}
+                               color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;
+                           {% else %} /* Info y otros */
+                               color: #31708f; background-color: #d9edf7; border-color: #bce8f1;
+                           {% endif %}">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {# --- Fin Bloque Mensajes FLASH --- #}
+
     <div class="register-page-content">
         <h2>Registro</h2>
+
+        {# --- Renderizado EXPLÍCITO de errores para DEBUGGING --- #}
+        {% if formulario.non_field_errors %}
+            <ul class="debug-error-list">
+                {% for error in formulario.non_field_errors %}
+                    <li>**ERROR GENERAL:** {{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% for field in formulario %}
+            {% if field.errors %}
+                <ul class="debug-error-list">
+                     <li>**ERROR EN CAMPO {{ field.name }}:**</li>
+                    {% for error in field.errors %}
+                        <li>  - {{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+        {# --- Fin Renderizado EXPLÍCITO --- #}
+
+
         <form method="POST" action="{% url 'registro' %}">
             {% csrf_token %}
+            {# --- Renderizado NORMAL del formulario (debería incluir errores) --- #}
             {{ formulario.as_p }}
+            {# --- Fin Renderizado NORMAL --- #}
+
             <button type="submit">Registrarse</button>
         </form>
         <p class="login-prompt">¿Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar Sesión</a></p>
