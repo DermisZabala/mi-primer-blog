@@ -35,7 +35,8 @@
                     <li><a href="{% url 'contacto' %}">Contacto</a></li>
                     
                     {% if user.is_authenticated %} <!-- si el usuario esta logeado aparece -->
-                        <li><a href="{% url 'nueva_publicacion' %}">Añadir post  <span class="glyphicon glyphicon-plus"></span></a></li>
+                        <li><a href="{% url 'nueva_publicacion' %}">Añadir Post  <span class="glyphicon glyphicon-plus"></span></a></li>
+                        <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
                     {% endif %}
 
                     {% if not user.is_authenticated %} <!-- si el usuario no esta logeado desaparece -->
