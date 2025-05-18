@@ -1,6 +1,11 @@
 {% extends "blog/base.html" %}
+{% load static %}
 
 {% block title %}{{ publicacion.titulo }} - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/detalle_publicacion.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="publicaciones">
@@ -8,14 +13,71 @@
             justify-content: space-between;
             align-items: center;">
             <h2 style="margin: 0; font-weight: bold;">{{ publicacion.titulo }}</h2>
-
             <!-- ocultandole el formulario de editar a los usuarios que no son autores del post -->
             {% if user.is_authenticated and publicacion.autor.pk == user.pk %}
                 <a class="btn btn-default" href="{% url 'editar_publicacion' publicacion.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             {% endif %}
         </div>
         <p>{{ publicacion.texto|linebreaks }}</p>
-        <p><strong>Autor:</strong> {{ publicacion.autor }}</p>
-        <p><strong>Fecha:</strong> {{ publicacion.fecha_publicacion }}</p>
+        <div class="date">
+            <p>Autor: {{ publicacion.autor }}</p>
+        </div>
+        <p>Fecha publicacion: {{ publicacion.fecha_publicacion }}</p>
     </div>
+
+    <hr>
+
+    <section class="seccion-comentarios">
+        <h3>Comentarios ({{ comentarios.count }})</h3>
+        <hr>
+        <h4>Añadir un Comentario</h4>
+        {% if user.is_authenticated %}
+            <form method="post" class="formulario-comentario">
+                {% csrf_token %}
+                {{ form_comentario.as_p }}
+                <button type="submit" class="btn-submit-comentario">Enviar Comentario</button>
+            </form>
+        {% else %}
+            <p>Debes <a href="{% url 'login' %}?next={{ request.path }}">iniciar sesión</a> para dejar un comentario.</p>
+            {# '?next={{ request.path }}' redirige al usuario de vuelta a esta publicación después del login #}
+        {% endif %}
+
+        {% if comentarios %}
+            <ul class="lista-comentarios">
+                {% for comentario in comentarios %}
+                    <li class="comentario-item">
+                        {# Contenedor para la información del autor y el botón de eliminar #}
+                        <div class="comentario-header">
+                            <div class="autor-info">
+                                <strong>{{ comentario.autor.username }}</strong>
+                                <span class="comentario-fecha">el {{ comentario.fecha_creacion|date:"d M Y, H:i" }}</span>
+                            </div>
+                            
+                            {# Botón de eliminar (se mostrará a la derecha) #}
+                            {% if user.is_authenticated %}
+                                {% if user == comentario.autor or user == comentario.publicacion.autor or user.is_staff %}
+                                    <form method="POST" action="{% url 'eliminar_comentario' pk_comentario=comentario.pk %}" class="form-eliminar-comentario">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-eliminar-comentario" onclick="return confirm('¿Estás seguro de que quieres eliminar este comentario?');">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                        </div> {# Fin de .comentario-header #}
+
+                        {# Texto del comentario, debajo del header #}
+                        <div class="comentario-texto">
+                            {{ comentario.texto|linebreaksbr }}
+                        </div>
+                    </li>
+                {% empty %}
+                    <p>Aún no hay comentarios. ¡Sé el primero!</p>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aún no hay comentarios. ¡Sé el primero en comentar!</p>
+        {% endif %}
+    </section>
+    
 {% endblock %}

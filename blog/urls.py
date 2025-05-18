@@ -10,4 +10,5 @@ urlpatterns = [
     path('contacto/', views.contacto, name='contacto'),
     path('nueva-publicacion/', views.nueva_publicacion, name='nueva_publicacion'),
     path('post/<int:pk>/editar/', views.editar_publicacion, name='editar_publicacion'),
+    path('comentario/<int:pk_comentario>/eliminar/', views.eliminar_comentario_view, name='eliminar_comentario'),
 ]

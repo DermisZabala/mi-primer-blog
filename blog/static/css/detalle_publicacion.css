@@ -1,0 +1,362 @@
+.publicaciones {
+    background-color: #fdfdfd;
+    padding: 25px;
+    margin-bottom: 40px;
+    border-left: 5px solid #2B5D98;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    width: 750px; /* Manteniendo el ancho que tenías */
+    overflow: hidden; /* Para contener los elementos flotantes */
+}
+
+.publicaciones:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.publicaciones h2 {
+    margin-top: 0;
+}
+
+.publicaciones h2 a,
+.publicaciones h2 a:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #34495e;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.publicaciones h2 a:hover {
+    color: #5ca1f0;
+}
+
+/* Párrafo principal del post (texto de la publicación) */
+.publicaciones > p:not(:last-child):not(.date p) {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* --- Metadatos de la Publicación (Fecha, Autor) --- */
+
+.date {
+    float: left;
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-bottom: 0;
+    padding-right: 10px;
+}
+
+.publicaciones .date p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Párrafo del autor (último <p>) */
+.publicaciones > p:last-child {
+    float: right;
+    font-size: 0.9em;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    padding-left: 10px;
+}
+
+/* Estilos generales para enlaces */
+a {
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Elementos opcionales usados en otras partes del diseño */
+.save {
+    float: right;
+}
+
+.post-form textarea,
+.post-form input {
+    width: 100%;
+}
+
+.top-menu,
+.top-menu:hover,
+.top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+
+.seccion-comentarios {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.seccion-comentarios h3,
+.seccion-comentarios h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.seccion-comentarios h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.seccion-comentarios h4 {
+    font-size: 1.3em;
+    margin-top: 25px;
+}
+
+/* Lista de comentarios */
+.lista-comentarios {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 20px 0;
+}
+
+.comentario-item {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* --- MODIFICACIONES/ADICIONES PARA EL HEADER DEL COMENTARIO --- */
+.comentario-header {
+    display: flex;              /* ACTIVA FLEXBOX */
+    justify-content: space-between; /* Empuja .autor-info y .form-eliminar-comentario a los extremos */
+    align-items: center;        /* Alinea verticalmente los ítems al centro de la línea flex */
+    margin-bottom: 10px;        /* Espacio entre el header y el texto del comentario */
+    padding-bottom: 8px;        /* Un pequeño padding debajo */
+    border-bottom: 1px dashed #eee; /* Separador visual */
+}
+
+.autor-info {
+    /* Este contenedor es para el nombre del autor y la fecha */
+    /* No necesita mucho estilo aquí si el flexbox del padre lo maneja */
+    font-size: 0.9em;  /* Heredado de .comentario-meta, pero podemos ser explícitos */
+    color: #555;      /* Un color base para la info del autor */
+    /* flex-grow: 1; */ /* Descomentar si quieres que la info del autor ocupe más espacio si el botón es pequeño */
+}
+
+.autor-info strong { /* Nombre del autor del comentario */
+    color: #2B5D98; /* Usar tu color principal */
+    font-weight: bold;
+    margin-right: 8px; /* Pequeño espacio entre el nombre y la fecha */
+}
+
+.comentario-fecha { /* Estilo para la fecha del comentario */
+    font-style: italic;
+    font-size: 0.95em; /* Relativo al tamaño de .autor-info */
+    color: #777;
+}
+
+/* Estilos para el FORMULARIO de eliminar (el botón está dentro) */
+.form-eliminar-comentario {
+    margin: 0; /* Resetea márgenes si los tuviera el formulario */
+}
+
+.btn-eliminar-comentario { /* Estilo para el BOTÓN dentro del formulario */
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 4px 10px; /* Puedes ajustar el padding */
+    font-size: 0.85em; /* Un poco más pequeño */
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    /* vertical-align: middle; ya no es necesario con align-items: center en el flex container */
+}
+
+.btn-eliminar-comentario:hover {
+    background-color: #c0392b;
+}
+
+.comentario-texto { /* Texto del comentario, ahora es un hijo directo de .comentario-item */
+    font-size: 1em;
+    line-height: 1.6;
+    color: #444;
+    padding-top: 5px; /* Pequeño espacio si el borde del header es muy pegado */
+}
+
+/* Formulario de comentario */
+.formulario-comentario textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    min-height: 80px;
+}
+
+.formulario-comentario textarea:focus {
+    border-color: #2B5D98;
+    box-shadow: 0 0 0 0.2rem rgba(43, 93, 152, 0.25);
+    outline: none;
+}
+
+.btn-submit-comentario {
+    background-color: #2B5D98;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit-comentario:hover {
+    background-color: #204a7a;
+}
+
+/* Mensaje para iniciar sesión */
+.seccion-comentarios p a {
+    color: #2B5D98;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.seccion-comentarios p a:hover {
+    text-decoration: none;
+}
+
+
+/* === CSS EXISTENTE DE RESPONSIVIDAD (lo has proporcionado tú) === */
+/* ... (Todo tu CSS de responsividad se mantiene igual, asegúrate de que las clases como .seccion-comentarios estén incluidas en los selectores de ancho si es necesario) ... */
+
+@media (max-width: 1077px) {
+    .publicaciones,
+    .seccion-comentarios {
+        width: 95%;
+        max-width: 100%;
+        padding: 20px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .publicaciones .titulo h2 {
+        font-size: 1.5em;
+    }
+    
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        right: 0;
+        background-color: #34495e;
+        border-top: 1px solid #4a657e;
+        z-index: 1000;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .main-nav.is-active {
+        display: block;
+    }
+
+    .main-nav .nav-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .main-nav .nav-links li {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .main-nav .nav-links a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #4a657e;
+        font-size: 1.3em;
+    }
+
+    .main-nav .nav-links li:last-child a {
+        border-bottom: none;
+    }
+    
+    .main-nav .nav-links a:hover {
+        background-color: #4a657e;
+        color: #9dcbff;
+    }
+}
+
+@media (max-width: 480px) {
+    .publicaciones .titulo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .publicaciones .titulo h2 {
+        margin-bottom: 10px;
+        font-size: 1.3em;
+    }
+    .publicaciones .titulo a.btn.btn-default {
+        align-self: flex-start;
+    }
+
+    .publicaciones .date,
+    .publicaciones > p:last-child {
+        float: none;
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .publicaciones .date {
+        margin-bottom: 5px;
+    }
+
+    .publicaciones > p:not(.meta-info) {
+        font-size: 1em;
+    }
+
+    .seccion-comentarios h3 {
+        font-size: 1.3em;
+    }
+    .seccion-comentarios h4 {
+        font-size: 1.1em;
+    }
+    .btn-submit-comentario {
+        width: 100%;
+        padding: 12px;
+    }
+
+    /* AJUSTES PARA EL HEADER DEL COMENTARIO EN MÓVILES PEQUEÑOS */
+    .comentario-header {
+        flex-direction: column; /* Apila la info del autor y el botón */
+        align-items: flex-start; /* Alinea todo a la izquierda */
+    }
+    .autor-info {
+        margin-bottom: 8px; /* Espacio entre info del autor y el botón si se apilan */
+    }
+    .form-eliminar-comentario {
+        align-self: flex-start; /* Asegura que el botón (formulario) también se alinee a la izquierda */
+    }
+}

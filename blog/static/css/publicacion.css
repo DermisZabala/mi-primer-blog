@@ -1,0 +1,184 @@
+/* --- Estilos para las Publicaciones Individuales --- */
+.publicaciones {
+    background-color: #fdfdfd;
+    padding: 25px;
+    margin-bottom: 40px;
+    border-left: 5px solid #2B5D98;
+    border-color: #ccc;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    width: 750px; /* Manteniendo el ancho que tenías */
+    overflow: hidden; /* NUEVO: Necesario para contener los floats de fecha y autor de forma simple */
+                      /* Alternativamente, podrías usar un clearfix más explícito (ver abajo) */
+}
+
+.publicaciones:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.publicaciones h2 {
+    margin-top: 0;
+}
+
+.publicaciones h2 a,
+.publicaciones h2 a:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #34495e;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.publicaciones h2 a:hover {
+    color: #5ca1f0;
+}
+
+/* Párrafo principal del post (el texto de la publicación) */
+/* Asumimos que es el primer <p> después del <h2> o el único <p> que no es el del autor */
+.publicaciones > p:not(:last-child):not(.date p) { /* Ajuste para ser más específico si .date es el último */
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 20px; /* NUEVO: Espacio entre el texto del post y la línea de metadatos */
+}
+
+
+/* --- Metadatos de la Publicación (Fecha, Autor) --- */
+
+/* Contenedor de la fecha de publicación */
+.date {
+    float: left;             /* NUEVO: Flota la fecha a la izquierda */
+    font-size: 0.9em;
+    color: #7f8c8d;
+    /* margin-bottom: 15px; */ /* MODIFICADO: Eliminado, ya que ahora está en línea */
+    margin-bottom: 0;        /* Aseguramos que no haya margen inferior */
+    padding-right: 10px;     /* Opcional: Pequeño espacio si el texto del autor es largo y se acerca mucho */
+}
+/* Estilo para el párrafo dentro del div .date */
+.publicaciones .date p {
+    margin: 0; /* NUEVO: Elimina márgenes por defecto del párrafo dentro de .date */
+    line-height: 1.5; /* NUEVO: Ajuste para mejor alineación vertical con el autor */
+}
+
+
+/* Párrafo del autor (asumido como el último <p> dentro de .publicaciones) */
+/* Este selector asume que el <p> del autor es el último elemento de tipo <p> Y el último hijo.
+   Si .date (que es un div) fuera el último hijo, este selector aún se aplicaría al <p> del autor
+   siempre que sea el último PÁRRAFO.
+   Dado tu HTML: <div class="date">...</div> <p>Autor...</p> -> p:last-child funciona.
+*/
+.publicaciones > p:last-child { /* Este es el párrafo del autor */
+    float: right;            /* NUEVO: Flota el autor a la derecha */
+    font-size: 0.9em;
+    color: #7f8c8d;
+    font-style: italic;
+    /* margin-top: 15px; */  /* MODIFICADO: Eliminado, ya que ahora está en línea */
+    margin-top: 0;         /* Aseguramos que no haya margen superior */
+    margin-bottom: 0;      /* Ya estaba, pero lo mantenemos */
+    line-height: 1.5;      /* NUEVO: Ajuste para mejor alineación vertical con la fecha */
+    padding-left: 10px;    /* Opcional: Pequeño espacio si el texto de la fecha es largo */
+}
+
+/* --- Estilos Generales para Enlaces (opcional, pero buena práctica) --- */
+a {
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+/* --- Estilos para Elementos no presentes en tu HTML actual pero sí en tu CSS original (los mantengo por si los usas) --- */
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+/* --- Responsividad: Ajustes para pantallas más pequeñas --- */
+@media (max-width: 1077px) {
+    /* AJUSTE PARA .publicaciones EN MÓVILES SI USAS 'width' FIJO */
+    .publicaciones {
+        width: 100%; /* Que ocupe un porcentaje en lugar de un ancho fijo */
+        max-width: 100%; /* si quieres que no exceda el contenedor */
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .publicaciones h2 a {
+        font-size: .7em;
+    }
+
+    .main-nav {
+        display: none; /* Ocultar el menú de navegación */
+        position: absolute;
+        top: 100%; /* Justo debajo de la cabecera (.cabeza-pagina) */
+        left: 0;
+        right: 0;
+        background-color: #34495e; /* Un fondo para el menú desplegado */
+        border-top: 1px solid #4a657e;
+        z-index: 1000;
+        padding-top: 10px; /* Espacio arriba */
+        padding-bottom: 10px; /* Espacio abajo */
+    }
+
+    .main-nav.is-active {
+        display: block; /* Mostrar el menú cuando se active con JS */
+    }
+
+    .main-nav .nav-links {
+        flex-direction: column; /* Apilar los enlaces verticalmente */
+        align-items: stretch; /* Que los enlaces ocupen todo el ancho */
+    }
+
+    .main-nav .nav-links li {
+        margin-left: 0; /* Resetear margen */
+        text-align: center; /* Centrar texto de los enlaces */
+    }
+
+    .main-nav .nav-links a {
+        padding: 12px 20px; /* Más padding para facilitar el toque */
+        border-bottom: 1px solid #4a657e; /* Separador entre enlaces */
+        font-size: 1.3em;
+    }
+
+    .main-nav .nav-links li:last-child a {
+        border-bottom: none; /* Sin borde para el último ítem */
+    }
+    
+    .main-nav .nav-links a:hover {
+        background-color: #4a657e; /* Hover para el menú móvil */
+        color: #9dcbff;
+    }
+}
+
+/* NUEVA MEDIA QUERY PARA METADATOS EN PANTALLAS MUY PEQUEÑAS */
+@media (max-width: 480px) {
+    .publicaciones .date,
+    .publicaciones > p:last-child { /* El párrafo del autor */
+        float: none;             /* Quita el float */
+        display: block;          /* Hace que cada uno ocupe su propia línea */
+        width: 100%;             /* Ocupa el ancho completo */
+        text-align: left;        /* Alinea el texto a la izquierda */
+        padding-left: 0;         /* Resetea padding si se añadió */
+        padding-right: 0;        /* Resetea padding si se añadió */
+    }
+
+    .publicaciones .date {
+        margin-bottom: 5px;      /* Pequeño espacio entre la fecha (arriba) y el autor (abajo) */
+    }
+
+    /* El selector del texto principal del post podría necesitar ajuste si se vuelve muy complejo */
+    .publicaciones > p:not(:last-child):not(.date p) {
+        font-size: 1em; /* Ajustar tamaño si es necesario en móviles */
+    }
+}
